@@ -1,85 +1,67 @@
+import reqwest from 'reqwest';
+
 /**
- * This class is used to asynchronously communicate with the Hacker News API.
- * Each instance method in class class returns a promise so that the requests
- * are asynchronous. For the response schemas, See the Hacker News API docs at
+ * This constant is used to perform HTTP requests against the Hacker News API.
+ */
+const request = uri =>
+  reqwest({
+    method: 'GET',
+    url: `https://hacker-news.firebaseio.com/v0/${uri}.json`,
+    crossOrigin: true,
+    type: 'json',
+  });
+
+/**
+ * This object is used to asynchronously communicate with the Hacker News API.
+ * Each function method in Object class performs an asynchronous request and
+ * returns a promise.For the response schemas, See the Hacker News API docs at
  * https://github.com/HackerNews/API.
  */
-class HackerNews {
-  /**
-   * The constructor for this object accepts a request function, which is
-   * intended to perform an HTTP request. Using this pattern makes stubbing the
-   * requests out simpler for testing. The request function should accept a
-   * String (for the URI), asynchronously make a request to the specified URI,
-   * and return a promise object.
-   */
-  constructor(request) {
-    this._request = request;
-  }
-
+export default {
   /**
    * Find an item (Story, Job Posting, Ask HN, Comment, Poll, or Poll Option)
    * by its ID.
    */
-  findItemById(id) {
-    return this._request(`item/${id}`);
-  }
+  findItemById: id => request(`item/${id}`),
 
   /**
    * Find a user by their username.
    */
-  findUserByUsername(username) {
-    return this._request(`user/${username}`);
-  }
+  findUserByUsername: username => request(`user/${username}`),
 
   /**
    * Get the current maximum item ID.
    */
-  maxItemId() {
-    return this._request('maxitem');
-  }
+  maxItemId: () => request('maxitem'),
 
   /**
    * Retreive a list of the item IDs of the new stories.
    */
-  newStories() {
-    return this._request('newstories');
-  }
+  newStories: () => request('newstories'),
 
   /**
    * Retreive a list of the item IDs of the top stories.
    */
-  topStories() {
-    return this._request('topstories');
-  }
+  topStories: () => request('topstories'),
 
   /**
    * Retreive a list of the item IDs of the Ask HN stories.
    */
-  askStories() {
-    return this._request('askstories');
-  }
+  askStories: () => request('askstories'),
 
   /**
    * Retreive a list of the item IDs of the Show HN stories.
    */
-  showStories() {
-    return this._request('showstories');
-  }
+  showStories: () => request('showstories'),
 
   /**
    * Retreive a list of the item IDs of the Job stories.
    */
-  jobStories() {
-    return this._request('jobstories');
-  }
+  jobStories: () => request('jobstories'),
 
   /**
    * Retreive a list of the item IDs of the recently changed items as well as
    * the recently changed users.
    */
-  updates() {
-    return this._request('updates');
-  }
-}
-
-export default HackerNews;
+  updates: () => request('updates')
+};
