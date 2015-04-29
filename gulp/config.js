@@ -71,7 +71,7 @@ var config = {
         $(bower, 'jquery', 'dist', 'jquery.js'),
         $(bower, 'materialize', 'dist', 'js', 'materialize.js'),
         $(bower, 'react', 'react.js'),
-        $(bower, 'reqwest', 'reqwest.js'),
+        $(bower, 'axios', 'dist', 'axios.js'),
         $(bower, 'underscore', 'underscore.js')
       ],
       dest: $(build, 'public', 'js')

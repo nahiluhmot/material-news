@@ -45,8 +45,8 @@
   },
   "browserify-shim": {
     "aviator": "global:Aviator",
+    "axios": "global:axios",
     "react": "global:React",
-    "reqwest": "global:reqwest",
     "underscore": "global:_"
   }
 }

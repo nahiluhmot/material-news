@@ -1,20 +1,14 @@
-import reqwest from 'reqwest';
+import { get } from 'axios';
 
 /**
- * This constant is used to perform HTTP requests against the Hacker News API.
+ * This constant is used to perform HTTP GETs against the Hacker News API.
  */
-const request = uri =>
-  reqwest({
-    method: 'GET',
-    url: `https://hacker-news.firebaseio.com/v0/${uri}.json`,
-    crossOrigin: true,
-    type: 'json',
-  });
+const request = uri => get(`https://hacker-news.firebaseio.com/v0/${uri}.json`);
 
 /**
  * This object is used to asynchronously communicate with the Hacker News API.
  * Each function method in Object class performs an asynchronous request and
- * returns a promise.For the response schemas, See the Hacker News API docs at
+ * returns a promise. For the response schemas, See the Hacker News API docs at
  * https://github.com/HackerNews/API.
  */
 export default {
