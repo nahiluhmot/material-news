@@ -17,10 +17,12 @@ export default {
    * by its ID.
    */
   findItemById: id =>
-    request(`item/${id}`).then(({ data: item }) => {
-      if (item === null) {
+    request(`item/${id}`).then(response => {
+      if (response.data === null) {
         throw new Error(`Unable to find item with id: ${id}`);
       }
+
+      return response;
     }),
 
 
