@@ -1,0 +1,10 @@
+/**
+ * This file contains mixin styles.
+ */
+
+// Center an element relative to its left and right margins.
+@mixin auto-margin {
+  margin-left: auto;
+  margin-right: auto;
+}
+

@@ -1,18 +1,37 @@
 var config = require('../config.js').scss;
 var gulp = require('gulp');
 var id = require('gulp-identity');
+var merge = require('merge-stream');
 var min = require('gulp-minify-css');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
 /**
- * Copy the static CSS to the public folder.
+ * Compile the SCSS sources.
  */
-gulp.task('scss', function() {
+gulp.task('scss', ['scss:compile']);
+
+/**
+ * Copy the applictaion sources to the build dir.
+ */
+gulp.task('scss:copy', function() {
+  var streams = config.copy.map(function(conf) {
+    return gulp.src(conf.src)
+      .pipe(gulp.dest(conf.dest));
+  });
+
+  return merge(streams);
+});
+
+/**
+ * Copy the vendored sources to the build dir.
+ */
+gulp.task('scss:compile', ['scss:copy'], function() {
+  var conf = config.compile;
   var initSourcemaps;
   var writeSourcemaps;
 
-  if (config.sourceMaps) {
+  if (conf.sourceMaps) {
     initSourcemaps = sourcemaps.init();
     writeSourcemaps = sourcemaps.write('.');
   } else {
@@ -20,10 +39,10 @@ gulp.task('scss', function() {
     writeSourcemaps = id();
   }
 
-  return gulp.src(config.src)
+  return gulp.src(conf.src)
     .pipe(sass())
     .pipe(initSourcemaps)
     .pipe(min({ compatibility: 'ie8' }))
     .pipe(writeSourcemaps)
-    .pipe(gulp.dest(config.dest));
+    .pipe(gulp.dest(conf.dest));
 });

@@ -1,0 +1,17 @@
+/**
+ * This file contains styling for the top level of the site.
+ */
+
+// Styling for the document root.
+#material-news-main {
+  @extend auto-margin;
+
+  max-width: 750px;
+  @media (min-width: 992px) {
+    max-width: 970px;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 600px;
+  }
+}

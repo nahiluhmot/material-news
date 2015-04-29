@@ -36,12 +36,6 @@ var config = {
     ],
     dest: $(build, 'public')
   },
-  css: {
-    src: [
-      $(bower, 'materialize', 'dist', 'css', 'materialize.css'),
-    ],
-    dest: $(build, 'public', 'css')
-  },
   fonts: {
     vendored: {
       src: [
@@ -93,9 +87,21 @@ var config = {
     reporter: 'jshint-stylish'
   },
   scss: {
-    src: $(scss, '**', '*.scss'),
-    dest: $(build, 'public', 'css'),
-    sourceMaps: !isProductionBuild
+    copy: [
+      {
+        src: $(scss, '**', '*.scss'),
+        dest: $(build, 'scss')
+      },
+      {
+        src: $(bower, 'materialize', 'sass', 'components', '**', '*.scss'),
+        dest: $(build, 'scss', 'materialize')
+      }
+    ],
+    compile: {
+      src: $(build, 'scss', '*.scss'),
+      dest: $(build, 'public', 'css'),
+      sourceMaps: !isProductionBuild
+    }
   },
   serve: {
     src: $(build, 'public'),

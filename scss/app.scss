@@ -1,17 +1,21 @@
-@mixin auto-margin {
-  margin-left: auto;
-  margin-right: auto;
-}
+@charset "UTF-8";
 
-#tabular-main {
-  @extend auto-margin;
+/**
+ * Required materialize files.
+ */
+@import 'materialize/prefixer';
+@import 'materialize/mixins';
+@import 'materialize/color';
+@import 'materialize/variables';
+@import 'materialize/normalize';
 
-  max-width: 750px;
-  @media (min-width: 992px) {
-    max-width: 970px;
-  }
+/**
+ * Optional materialize files.
+ */
+@import 'materialize/buttons';
 
-  @media (max-width: 768px) {
-    max-width: 600px;
-  }
-}
+/**
+ * Application files.
+ */
+@import 'app/mixins';
+@import 'app/root';
