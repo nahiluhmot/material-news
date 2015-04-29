@@ -16,7 +16,13 @@ export default {
    * Find an item (Story, Job Posting, Ask HN, Comment, Poll, or Poll Option)
    * by its ID.
    */
-  findItemById: id => request(`item/${id}`),
+  findItemById: id =>
+    request(`item/${id}`).then(({ data: item }) => {
+      if (item === null) {
+        throw new Error(`Unable to find item with id: ${id}`);
+      }
+    }),
+
 
   /**
    * Find a user by their username.
