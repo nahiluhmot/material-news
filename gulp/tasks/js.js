@@ -1,9 +1,7 @@
-var browserify = require('browserify');
+var bundle = require('../util/bundle.js');
 var config = require('../config.js').js;
 var gulp = require('gulp');
-var logError = require('../util/log-error.js');
 var minify = require('../util/minify-js.js');
-var source = require('vinyl-source-stream');
 var transpile = require('../util/transpile.js');
 
 /**
@@ -18,11 +16,9 @@ gulp.task('js:compile', function() {
 });
 
 gulp.task('js:bundle', ['js:compile'], function() {
-  return browserify({ entries: config.bundle.src, paths: config.bundle.paths })
-    .bundle()
-    .pipe(source(config.bundle.file))
-    .on('error', logError)
-    .pipe(gulp.dest(config.bundle.dest));
+  var conf = config.bundle;
+
+  return bundle(conf.src, conf.dest, conf.file, conf.paths);
 });
 
 gulp.task('js:min', ['js:bundle'], function() {
