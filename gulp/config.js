@@ -99,6 +99,7 @@ var config = {
   },
   serve: {
     src: $(build, 'public'),
+    crossOrigin: 'https://hacker-news.firebaseio.com',
     port: 3000
   }
 };

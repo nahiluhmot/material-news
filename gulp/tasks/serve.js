@@ -10,6 +10,10 @@ gulp.task('serve', ['watch'], function() {
     .pipe(serve({
       port: config.port,
       open: false,
-      fallback: 'index.html'
+      fallback: 'index.html',
+      middleware: function(request, response, done) {
+        response.setHeader('Access-Control-Allow-Origin', config.crossOrigin);
+        done();
+      }
     }));
 });
