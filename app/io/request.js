@@ -1,8 +1,8 @@
 import reqwest from 'reqwest';
 
 /**
- * This module exports a single function that performs a real (as opposed to a
- * mocked) HTTP request.
+ * This module exports a single function that performs an HTTP GET request to
+ * the Hacker News API.
  */
 export default uri =>
   reqwest({
