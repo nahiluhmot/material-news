@@ -1,0 +1,24 @@
+{
+  "name": "material-news",
+  "version": "0.0.0",
+  "authors": [
+    "Tom Hulihan <hulihan.tom159@gmail.com>"
+  ],
+  "description": "A Hacker News client made with material design principles.",
+  "main": "src/main.js",
+  "license": "MIT",
+  "homepage": "https://github.com/nahiluhmot/material-news",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "aviator": "~0.4.2",
+    "jquery": "~2.1.4",
+    "materialize": "~0.96.1",
+    "react": "~0.13.2",
+    "reqwest": "~1.1.5",
+    "underscore": "~1.8.3"
+  }
+}
