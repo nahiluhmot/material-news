@@ -21,7 +21,7 @@ class Preview extends Component {
     const { by, descendents, id, score, time, url } = this.props.item;
 
     const tree =
-      div({ className: 'item-preview' },
+      div({ key: id, className: 'item-preview' },
         div({ className: 'item-preview-content' },
           span({ className: 'item-preview-title' },
             a({ className: 'navigate', href: url ? url : `/items/${id}/` },
