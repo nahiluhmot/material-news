@@ -1,5 +1,9 @@
+import Top from 'components/pages/stories/top';
 import { ITEMS_PER_PAGE } from 'config/constants';
+
 import API from 'requests/hacker-news';
+
+import render from 'services/render';
 import Paginator from 'services/paginator';
 
 import { navigate } from 'aviator';
@@ -30,8 +34,21 @@ const Stories = {
   /**
    * Get the top stories -- like hot on reddit.
    */
-  top: ({ queryParams }) =>
-    loadPage('top', API.topStories(), queryParams.page),
+  top: () => {
+    API.topStories().then(ids => {
+      const promises = ids.map(id => () => API.findItemById(id));
+      const pages = new Paginator(ITEMS_PER_PAGE, promises);
+
+      render(Top, {
+        getItemsByPage: page => pages.getPage(page),
+        lastPage: pages.pageCount()
+      });
+    }).catch(error => {
+      console.log('Unable to fetch the top stories');
+      console.log(error);
+    });
+  },
+
   /**
    * Get the newest stories.
    */
