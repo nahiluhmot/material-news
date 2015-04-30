@@ -3,7 +3,9 @@ import { get } from 'axios';
 /**
  * This constant is used to perform HTTP GETs against the Hacker News API.
  */
-const request = uri => get(`https://hacker-news.firebaseio.com/v0/${uri}.json`);
+const request = uri =>
+  get(`https://hacker-news.firebaseio.com/v0/${uri}.json`)
+    .then(({ data }) => data);
 
 /**
  * This object is used to asynchronously communicate with the Hacker News API.
@@ -17,19 +19,26 @@ export default {
    * by its ID.
    */
   findItemById: id =>
-    request(`item/${id}`).then(response => {
-      if (response.data === null) {
+    request(`item/${id}`).then(item => {
+      if (item === null) {
         throw new Error(`Unable to find item with id: ${id}`);
       }
 
-      return response;
+      return item;
     }),
 
 
   /**
    * Find a user by their username.
    */
-  findUserByUsername: username => request(`user/${username}`),
+  findUserByUsername: username =>
+    request(`user/${username}`).then(user => {
+      if (user === null) {
+        throw new Error(`Unable to find user by username: ${username}`);
+      }
+
+      return user;
+    }),
 
   /**
    * Get the current maximum item ID.
