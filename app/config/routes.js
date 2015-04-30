@@ -12,8 +12,6 @@ export default {
   '/items': {
     target: Items,
     '/latest': 'latest',
-    '/not-found': 'notFound',
-    '/error': 'error',
     '/:id': 'show'
   },
   '/stories': {
