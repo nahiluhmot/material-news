@@ -18,21 +18,27 @@ class Preview extends Component {
    * Render the Preview.
    */
   render() {
-    const { by, descendents, id, score, time, url } = this.props.item;
+    const { index, item } = this.props;
+    const { by, descendants, id, score, time, title, url } = item;
 
     const tree =
       div({ key: id, className: 'item-preview' },
         div({ className: 'item-preview-content' },
           span({ className: 'item-preview-title' },
-            a({ className: 'navigate', href: url ? url : `/items/${id}/` },
-              title))),
+            index,
+            '. ',
+            a({
+              className: url ? '' : 'navigate',
+              href: url ? url : `/items/${id}/`
+            }, title))),
         div({ className: 'item-preview-action' },
           `${score} points by `,
           a({ className: 'navigate', href: `/users/${by}/` }, by),
           ' ',
           unix(time).fromNow(),
+          ' ',
           a({ className: 'navigate', href: `/items/${id}/` },
-            (descendents === 0) ? 'discuss' : `${descendents} comemnts`)));
+            (descendants === 0) ? 'discuss' : `${descendants} comemnts`)));
 
     return tree;
   }
@@ -51,7 +57,7 @@ Preview.propTypes = {
     /**
      * Number of children, grandchildren, etc.
      */
-    descendents: PropTypes.number.isRequired,
+    descendants: PropTypes.number.isRequired,
 
     /**
      * Unique identifier of the item whose preview is being shown.
@@ -79,6 +85,11 @@ Preview.propTypes = {
      */
     url: PropTypes.string
   }).isRequired,
+
+  /**
+   * Index of the preview in the page.
+   */
+  index: PropTypes.number.isRequired
 };
 
 export default Preview;
