@@ -2,7 +2,7 @@ import { ITEMS_PER_PAGE } from 'config/constants';
 import { findUserByUsername, findItemById } from 'requests/hacker-news';
 import { navigate } from 'aviator';
 import { map } from 'underscore';
-import { all } from 'promise';
+import { all } from 'bluebird';
 
 /**
  * This object contains the routing logic for pages related to the user.

@@ -46,7 +46,7 @@
   "browserify-shim": {
     "aviator": "global:Aviator",
     "axios": "global:axios",
-    "promise": "global:Promise",
+    "bluebird": "global:Promise",
     "react": "global:React",
     "underscore": "global:_"
   }
