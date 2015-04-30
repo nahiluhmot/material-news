@@ -1,6 +1,6 @@
 import { Component, DOM, PropTypes } from 'react';
 
-const { a, div, span } = DOM;
+const { div } = DOM;
 
 /**
  * This class is the container into which the rest of the application is
