@@ -1,0 +1,22 @@
+.feed {
+}
+
+.feed-body {
+  @extend .row;
+}
+
+.feed-item {
+  @extend .col, .s12;
+}
+
+.feed-footer {
+}
+
+.feed-error {
+}
+
+.feed-loading {
+}
+
+.feed-load-button {
+}
