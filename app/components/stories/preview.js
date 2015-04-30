@@ -38,7 +38,11 @@ class Preview extends Component {
           unix(time).fromNow(),
           ' ',
           a({ className: 'navigate', href: `/items/${id}/` },
-            (descendants === 0) ? 'discuss' : `${descendants} comemnts`)));
+            ((typeof descendants !== 'number') ?
+              'View' :
+              ((descendants === 0) ?
+                'discuss' :
+                `${descendants} comemnts`)))));
 
     return tree;
   }
@@ -57,7 +61,7 @@ Preview.propTypes = {
     /**
      * Number of children, grandchildren, etc.
      */
-    descendants: PropTypes.number.isRequired,
+    descendants: PropTypes.number,
 
     /**
      * Unique identifier of the item whose preview is being shown.
