@@ -68,6 +68,7 @@ var config = {
     vendored: {
       src: [
         $(bower, 'aviator', 'aviator.js'),
+        $(bower, 'bluebird', 'js', 'browser', 'bluebird.js'),
         $(bower, 'jquery', 'dist', 'jquery.js'),
         $(bower, 'materialize', 'dist', 'js', 'materialize.js'),
         $(bower, 'react', 'react.js'),
