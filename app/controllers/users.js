@@ -1,5 +1,6 @@
 import { ITEMS_PER_PAGE } from 'config/constants';
 import { findUserByUsername, findItemById } from 'requests/hacker-news';
+import Paginator from 'services/paginator';
 import { navigate } from 'aviator';
 import { map } from 'underscore';
 import { all } from 'bluebird';
@@ -27,16 +28,25 @@ const Users = {
   /**
    * Retreive the submissions by a user.
    */
-  submissions({ namedParams }) {
+  submissions({ namedParams, queryParams }) {
     const { username } = namedParams;
+    let { page } = queryParams;
+
+    if ((typeof page !== 'number') || (page < 1)) {
+      page = 1;
+    }
 
     findUserByUsername(username).then(user => {
-      return all(map(user.submitted.slice(0, ITEMS_PER_PAGE), findItemById));
+      const paginator =
+        new Paginator(ITEMS_PER_PAGE,
+          map(user.submitted, itemId => () => findItemById(itemId)));
+
+      return paginator.getPage(page);
     }).then(submissions => {
-      console.log(`Found submissions by user: ${username}`);
+      console.log(`Found submissions by user ${username} on page ${page}`);
       console.log(submissions);
     }).catch(error => {
-      console.log(`Could not find submissions by user: ${username}`);
+      console.log(`Could not find submissions by user ${username}`);
       console.log(error);
     });
   }

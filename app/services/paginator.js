@@ -9,17 +9,18 @@ class Paginator {
    * Create a new Paginator.
    *
    * @public
-   * @param getPages Array of Functions that return a promise.
    * @param pageSize Number of elements to put on a page.
+   * @param getPages Array of Functions that return a promise.
    */
-  constructor(getPages, pageSize) {
+  constructor(pageSize, getPages) {
     this.getPages = getPages;
     this.pageSize = pageSize;
     this.promisesCache = {};
   }
 
   /**
-   * Get a promise that returns a page of content by its page number..
+   * Get a promise that returns a page of content by its page number. Pages are
+   * index by one.
    *
    * @public
    * @param pageNumber Number that of the page to get.
@@ -29,10 +30,10 @@ class Paginator {
    */
   getPage(pageNumber) {
     const max = this.getPages.length;
-    const start = (pageSize * (pageNumber - 1));
-    const end = start + pageSize;
+    const start = (this.pageSize * (pageNumber - 1));
+    const end = start + this.pageSize;
 
-    if (page < 1) {
+    if (pageNumber < 1) {
       return getPage(1);
     } else if (start >= max) {
       return all([]);
@@ -62,7 +63,7 @@ class Paginator {
    */
   _findOrCreate(index) {
     if (!this.promisesCache[index] && this.getPages[index]) {
-      this.promisesCache[index] = getPages[index]();
+      this.promisesCache[index] = this.getPages[index]();
     }
 
     return this.promisesCache[index] || null;
