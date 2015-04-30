@@ -62,10 +62,6 @@ var config = {
       dest: $(build, 'compile')
     },
     min: {
-      src: $(build, 'compile', 'app.js'),
-      dest: $(build, 'public', 'js')
-    },
-    vendored: {
       src: [
         $(bower, 'aviator', 'aviator.js'),
         $(bower, 'bluebird', 'js', 'browser', 'bluebird.js'),
@@ -73,10 +69,12 @@ var config = {
         $(bower, 'materialize', 'dist', 'js', 'materialize.js'),
         $(bower, 'react', 'react.js'),
         $(bower, 'axios', 'dist', 'axios.js'),
-        $(bower, 'underscore', 'underscore.js')
+        $(bower, 'underscore', 'underscore.js'),
+        $(build, 'compile', 'app.js')
       ],
+      name: 'app.js',
       dest: $(build, 'public', 'js')
-    }
+    },
   },
   lint: {
     src: [

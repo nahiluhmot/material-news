@@ -7,7 +7,7 @@ var transpile = require('../util/transpile.js');
 /**
  * Transpile and minify and all of the JavaScript.
  */
-gulp.task('js', ['js:min', 'js:vendored']);
+gulp.task('js', ['js:min']);
 
 gulp.task('js:compile', function() {
   return transpile(config.compile.src, config.compile.dest, {
@@ -22,9 +22,6 @@ gulp.task('js:bundle', ['js:compile'], function() {
 });
 
 gulp.task('js:min', ['js:bundle'], function() {
-  return minify(config.min.src, config.min.dest, config.sourceMaps);
-});
-
-gulp.task('js:vendored', function()  {
-  return minify(config.vendored.src, config.vendored.dest, config.sourceMaps);
+  var maps = config.sourceMaps;
+  return minify(config.min.name, config.min.src, config.min.dest, maps);
 });

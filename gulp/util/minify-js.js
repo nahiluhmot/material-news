@@ -1,4 +1,5 @@
 var changed = require('gulp-changed');
+var concat = require('gulp-concat');
 var gulp = require('gulp');
 var id = require('gulp-identity');
 var logError = require('./log-error.js');
@@ -8,7 +9,7 @@ var uglify = require('gulp-uglify');
 /**
  * Minify es5 with a flag to enable/disable source maps.
  */
-var minifyJS = function(src, dest, sourceMaps) {
+var minifyJS = function(name, src, dest, sourceMaps) {
   var initSourcemaps;
   var writeSourcemaps;
 
@@ -24,6 +25,7 @@ var minifyJS = function(src, dest, sourceMaps) {
     .pipe(changed(dest))
     .pipe(initSourcemaps)
     .pipe(uglify())
+    .pipe(concat(name))
     .pipe(writeSourcemaps)
     .on('error', logError)
     .pipe(gulp.dest(dest));
