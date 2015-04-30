@@ -63,12 +63,13 @@ var config = {
     },
     min: {
       src: [
+        $(bower, 'axios', 'dist', 'axios.js'),
         $(bower, 'aviator', 'aviator.js'),
         $(bower, 'bluebird', 'js', 'browser', 'bluebird.js'),
         $(bower, 'jquery', 'dist', 'jquery.js'),
         $(bower, 'materialize', 'dist', 'js', 'materialize.js'),
+        $(bower, 'moment', 'moment.js'),
         $(bower, 'react', 'react.js'),
-        $(bower, 'axios', 'dist', 'axios.js'),
         $(bower, 'underscore', 'underscore.js'),
         $(build, 'compile', 'app.js')
       ],

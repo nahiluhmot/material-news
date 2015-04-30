@@ -20,6 +20,7 @@
     "react": "~0.13.2",
     "underscore": "~1.8.3",
     "axios": "~0.5.4",
-    "bluebird": "~2.9.25"
+    "bluebird": "~2.9.25",
+    "moment": "~2.10.2"
   }
 }
