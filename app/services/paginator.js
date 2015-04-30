@@ -45,6 +45,16 @@ class Paginator {
   }
 
   /**
+   * Return the number of pages.
+   *
+   * @public
+   * @return pageCount the pag ecount.
+   */
+  pageCount() {
+    return Math.ceil(getPages.length / pageSize);
+  }
+
+  /**
    * Find or create promise in the given range.
    *
    * @private

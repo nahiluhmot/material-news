@@ -3,7 +3,6 @@ import { findUserByUsername, findItemById } from 'requests/hacker-news';
 import Paginator from 'services/paginator';
 import { navigate } from 'aviator';
 import { map } from 'underscore';
-import { all } from 'bluebird';
 
 /**
  * This object contains the routing logic for pages related to the user.
