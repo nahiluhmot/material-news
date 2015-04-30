@@ -1,5 +1,5 @@
 import { unix } from 'moment';
-import { Component, createElement, DOM, PropTypes } from 'react';
+import { Component, DOM, PropTypes } from 'react';
 
 const { a, div, span } = DOM;
 
