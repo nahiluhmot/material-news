@@ -1,6 +1,8 @@
 import { Component, createElement as create, DOM, PropTypes } from 'react';
 import Preview from 'components/stories/preview';
 
+const { button, div, span } = DOM;
+
 /**
  * This class displays a lazy feed of items.
  */
@@ -22,7 +24,7 @@ class Feed extends Component {
    * After the component renders for the first time, load the next page.
    */
   componentDidMount() {
-    loadNextPage();
+    this.loadNextPage();
   }
 
   /**
@@ -35,9 +37,9 @@ class Feed extends Component {
     const tree =
       div({ className: 'feed' },
         div({ className: 'feed-body' },
-          this.state.items.map(item =>
-            div({ className: 'feed-item' },
-              create(Preview, { item: item })))),
+          this.state.items.map((item, index) =>
+            div({ key: item.id, className: 'feed-item' },
+              create(Preview, { item: item, index: index + 1 })))),
         div({ className: 'feed-footer' },
           (error ?
             div({ className: 'feed-error' }, error) :
@@ -47,7 +49,7 @@ class Feed extends Component {
                 className: 'feed-load-button',
                 disabled: loading || (currentPage === lastPage),
                 onClick: event => {
-                  event.prevetDefault();
+                  event.preventDefault();
                   this.loadNextPage();
                 }
               }, 'Load More')))));
@@ -66,7 +68,7 @@ class Feed extends Component {
     }
 
     this.setState({ loading: true }, () => {
-      getItemsByPage(nextPage).then(items => {
+      this.props.getItemsByPage(nextPage).then(items => {
         this.setState({
           currentPage: nextPage,
           loading: false,

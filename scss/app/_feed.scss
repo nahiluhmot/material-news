@@ -6,7 +6,8 @@
 }
 
 .feed-item {
-  @extend .col, .s12;
+  @extend .col;
+  @extend .s12;
 }
 
 .feed-footer {
