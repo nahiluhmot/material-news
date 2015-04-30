@@ -14,7 +14,7 @@ const Items = {
     const { id } = namedParams;
 
     findItemById(id)
-      .then(({ data: item }) => console.log(item))
+      .then(item => console.log(item))
       .catch(() =>
         navigate('/items/not-found/', {
           queryParams: {
@@ -28,7 +28,7 @@ const Items = {
    */
   latest({ getCurrentURI: route }) {
     maxItemId()
-      .then(({ data: id }) => navigate(`/items/${id}/`))
+      .then(id => navigate(`/items/${id}/`))
       .catch(() =>
         navigate('/items/error/', {
           queryParams: {
