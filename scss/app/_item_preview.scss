@@ -1,0 +1,19 @@
+/**
+ * This file holds the styling for previews.
+ */
+
+.item-preview {
+  @extend .card;
+}
+
+.item-preview-content {
+  @extend .card-content;
+}
+
+.item-preview-title {
+  @extend .card-title;
+}
+
+.item-preview-action {
+  @extend .card-action;
+}
