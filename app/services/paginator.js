@@ -34,7 +34,7 @@ class Paginator {
     const end = start + this.pageSize;
 
     if (pageNumber < 1) {
-      return getPage(1);
+      return this.getPage(1);
     } else if (start >= max) {
       return all([]);
     } else if (end >= max) {
@@ -51,7 +51,7 @@ class Paginator {
    * @return pageCount the pag ecount.
    */
   pageCount() {
-    return Math.ceil(getPages.length / pageSize);
+    return Math.ceil(this.getPages.length / this.pageSize);
   }
 
   /**
