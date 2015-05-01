@@ -25,24 +25,30 @@ class Preview extends Component {
       div({ key: id, className: 'item-preview' },
         div({ className: 'item-preview-content' },
           span({ className: 'item-preview-title' },
-            index,
-            '. ',
+            span({ className: 'item-preview-number' }, index, '.'),
             a({
-              className: url ? '' : 'navigate',
+              className: (url ? '' : 'navigate ') + 'item-preview-title-text',
               href: url ? url : `/items/${id}/`
             }, title))),
+
         div({ className: 'item-preview-action' },
-          `${score} points by `,
-          a({ className: 'navigate', href: `/users/${by}/` }, by),
-          ' ',
-          unix(time).fromNow(),
-          ' ',
-          a({ className: 'navigate', href: `/items/${id}/` },
+          `${score} points`),
+
+        div({ className: 'item-preview-action' },
+          a({ className: 'item-preview-link', href: `/users/${by}/` },
+            by)),
+
+        div({ className: 'item-preview-action' },
+          a({ className: 'item-preview-link', href: `/items/${id}/` },
+            unix(time).fromNow())),
+
+        div({ className: 'item-preview-action' },
+          a({ className: 'item-preview-link', href: `/items/${id}/` },
             ((typeof descendants !== 'number') ?
               'View' :
               ((descendants === 0) ?
                 'discuss' :
-                `${descendants} comemnts`)))));
+                `${descendants} comments`)))));
 
     return tree;
   }

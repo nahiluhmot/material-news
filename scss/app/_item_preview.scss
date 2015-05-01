@@ -14,6 +14,27 @@
   @extend .card-title;
 }
 
+.item-preview-number {
+  @extend .black-text;
+  @extend .col;
+  @extend .s2;
+  @extend .l1;
+}
+
+.item-preview-title-text {
+  @extend .col;
+  @extend .s10;
+  @extend .l11;
+}
+
 .item-preview-action {
   @extend .card-action;
+  @extend .col;
+  @extend .s6;
+  @extend .m3;
+  @extend .center-align;
+}
+
+.item-preview-link {
+  @extend .navigate;
 }

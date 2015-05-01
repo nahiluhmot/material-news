@@ -11,13 +11,31 @@
 }
 
 .feed-footer {
+  @extend .row;
 }
 
 .feed-error {
 }
 
+.feed-progress {
+  @extend .progress;
+  @extend .col;
+  @extend .s10;
+  @extend .offset-s1;
+}
+
 .feed-loading {
+  @extend .indeterminate;
 }
 
 .feed-load-button {
+  @extend .waves-effect;
+  @extend .waves-light;
+  @extend .btn;
+  @extend .col;
+  @extend .s10;
+  @extend .offset-s1;
+
+  display: block;
+  width: 100%;
 }

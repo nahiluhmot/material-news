@@ -44,7 +44,8 @@ class Feed extends Component {
           (error ?
             div({ className: 'feed-error' }, error) :
             (loading ?
-              span({ className: 'feed-loading' }) :
+              div({ className: 'feed-progress' },
+                div({ className: 'feed-loading' })) :
               button({
                 className: 'feed-load-button',
                 disabled: loading || (currentPage === lastPage),
