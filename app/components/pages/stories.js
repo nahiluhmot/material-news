@@ -6,9 +6,9 @@ import Feed from 'components/stories/feed';
 /**
  * This class is used to show the previews of the top stories.
  */
-class Top extends Component {
+class Stories extends Component {
   /**
-   * Create a new Top page.
+   * Create a new Stories page.
    */
   constructor(props) {
     super(props);
@@ -23,6 +23,6 @@ class Top extends Component {
   }
 }
 
-Top.propTypes = Feed.propTypes;
+Stories.propTypes = Feed.propTypes;
 
-export default Top;
+export default Stories;
