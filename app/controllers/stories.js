@@ -1,6 +1,6 @@
 import View from 'components/pages/stories';
 import { ITEMS_PER_PAGE } from 'config/constants';
-import API from 'requests/hacker-news';
+import API from 'services/hacker-news';
 import render from 'services/render';
 import Paginator from 'services/paginator';
 import { navigate } from 'aviator';

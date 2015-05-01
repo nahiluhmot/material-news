@@ -1,4 +1,4 @@
-import { findItemById, maxItemId } from 'requests/hacker-news';
+import { findItemById, maxItemId } from 'services/hacker-news';
 import { navigate } from 'aviator';
 
 /**

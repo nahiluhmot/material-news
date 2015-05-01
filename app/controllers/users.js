@@ -1,5 +1,5 @@
 import { ITEMS_PER_PAGE } from 'config/constants';
-import { findUserByUsername, findItemById } from 'requests/hacker-news';
+import { findUserByUsername, findItemById } from 'services/hacker-news';
 import Paginator from 'services/paginator';
 import { navigate } from 'aviator';
 import { map } from 'underscore';
