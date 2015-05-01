@@ -48,6 +48,7 @@
     "aviator": "global:Aviator",
     "axios": "global:axios",
     "bluebird": "global:Promise",
+    "jquery": "global:$",
     "moment": "global:moment",
     "react": "global:React",
     "underscore": "global:_"
