@@ -3,11 +3,12 @@ var config = require('../config.js').js;
 var gulp = require('gulp');
 var minify = require('../util/minify-js.js');
 var transpile = require('../util/transpile.js');
+var concat = require('gulp-concat');
 
 /**
  * Transpile and minify and all of the JavaScript.
  */
-gulp.task('js', ['js:min']);
+gulp.task('js', ['js:concat']);
 
 gulp.task('js:compile', function() {
   return transpile(config.compile.src, config.compile.dest, {
@@ -22,6 +23,11 @@ gulp.task('js:bundle', ['js:compile'], function() {
 });
 
 gulp.task('js:min', ['js:bundle'], function() {
-  var maps = config.sourceMaps;
-  return minify(config.min.name, config.min.src, config.min.dest, maps);
+  return minify(config.min.src, config.min.dest);
+});
+
+gulp.task('js:concat', ['js:min'], function() {
+  return gulp.src(config.concat.src)
+    .pipe(concat(config.concat.name))
+    .pipe(gulp.dest(config.concat.dest));
 });

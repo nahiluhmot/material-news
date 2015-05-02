@@ -4,7 +4,6 @@ var id = require('gulp-identity');
 var merge = require('merge-stream');
 var min = require('gulp-minify-css');
 var sass = require('gulp-sass');
-var sourcemaps = require('gulp-sourcemaps');
 
 /**
  * Compile the SCSS sources.
@@ -27,22 +26,8 @@ gulp.task('scss:copy', function() {
  * Copy the vendored sources to the build dir.
  */
 gulp.task('scss:compile', ['scss:copy'], function() {
-  var conf = config.compile;
-  var initSourcemaps;
-  var writeSourcemaps;
-
-  if (conf.sourceMaps) {
-    initSourcemaps = sourcemaps.init();
-    writeSourcemaps = sourcemaps.write('.');
-  } else {
-    initSourcemaps = id();
-    writeSourcemaps = id();
-  }
-
-  return gulp.src(conf.src)
+  return gulp.src(config.compile.src)
     .pipe(sass())
-    .pipe(initSourcemaps)
     .pipe(min({ compatibility: 'ie8' }))
-    .pipe(writeSourcemaps)
-    .pipe(gulp.dest(conf.dest));
+    .pipe(gulp.dest(config.compile.dest));
 });

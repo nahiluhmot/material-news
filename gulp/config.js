@@ -49,7 +49,6 @@ var config = {
     dest: $(build, 'public')
   },
   js: {
-    sourceMaps: !isProductionBuild,
     compile: {
       src: $(app, '**', '*.js'),
       dest: $(build, 'compile', 'src'),
@@ -73,9 +72,23 @@ var config = {
         $(bower, 'underscore', 'underscore.js'),
         $(build, 'compile', 'app.js')
       ],
+      dest: $(build, 'min')
+    },
+    concat: {
+      src: [
+        $(build, 'min', 'axios.js'),
+        $(build, 'min', 'aviator.js'),
+        $(build, 'min', 'bluebird.js'),
+        $(build, 'min', 'jquery.js'),
+        $(build, 'min', 'materialize.js'),
+        $(build, 'min', 'moment.js'),
+        $(build, 'min', 'react.js'),
+        $(build, 'min', 'underscore.js'),
+        $(build, 'min', 'app.js')
+      ],
       name: 'app.js',
       dest: $(build, 'public', 'js')
-    },
+    }
   },
   lint: {
     src: [
@@ -99,8 +112,7 @@ var config = {
     ],
     compile: {
       src: $(build, 'scss', '*.scss'),
-      dest: $(build, 'public', 'css'),
-      sourceMaps: !isProductionBuild
+      dest: $(build, 'public', 'css')
     }
   },
   serve: {
