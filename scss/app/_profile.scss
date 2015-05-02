@@ -1,0 +1,14 @@
+.profile-label {
+  @extend .right-align;
+  font-weight: bold;
+}
+
+.profile-btn {
+  @extend .btn;
+  @extend .waves-effect;
+  @extend .waves-light;
+  @extend .navigate;
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+}

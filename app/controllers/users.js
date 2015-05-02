@@ -1,6 +1,8 @@
 import { ITEMS_PER_PAGE } from 'config/constants';
+import View from 'components/pages/user';
 import { findUserByUsername, findItemById } from 'services/hacker-news';
 import Paginator from 'services/paginator';
+import render from 'services/render';
 import { navigate } from 'aviator';
 import { map } from 'underscore';
 
@@ -16,8 +18,7 @@ const Users = {
     const { username } = namedParams;
 
     findUserByUsername(username).then(user => {
-      console.log(`Found user by username: ${username}`);
-      console.log(user);
+      render(View, { user: user });
     }).catch(error => {
       console.log(`Unable to find user by username: ${username}`);
       console.log(error);
