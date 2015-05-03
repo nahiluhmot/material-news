@@ -3,6 +3,7 @@ import { ITEMS_PER_PAGE } from 'config/constants';
 import API from 'services/hacker-news';
 import render from 'services/render';
 import Paginator from 'services/paginator';
+import { validPreview }  from 'services/validators';
 import { navigate } from 'aviator';
 
 const loadPage = promise => {
@@ -11,7 +12,7 @@ const loadPage = promise => {
     const pages = new Paginator(ITEMS_PER_PAGE, promises);
 
     render(View, {
-      getItemsByPage: page => pages.getPage(page),
+      getItemsByPage: page => pages.getPage(page).filter(validPreview),
       lastPage: pages.pageCount()
     });
   }).catch(error => {
