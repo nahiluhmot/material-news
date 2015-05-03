@@ -70,12 +70,20 @@ class Feed extends Component {
 
     this.setState({ loading: true }, () => {
       this.props.getItemsByPage(nextPage).then(items => {
-        this.setState({
-          currentPage: nextPage,
-          loading: false,
-          items: this.state.items.concat(items),
-          error: null
-        });
+        if (items.length === 0) {
+          this.setState({
+            currentPage: nextPage,
+            loading: false,
+            error: null,
+          }, () => this.loadNextPage());
+        } else {
+          this.setState({
+            currentPage: nextPage,
+            loading: false,
+            items: this.state.items.concat(items),
+            error: null
+          });
+        }
       }).catch(error => {
         console.log(`Error loading page ${nextPage}`);
         console.log(error);
