@@ -1,6 +1,8 @@
 import { ITEMS_PER_PAGE } from 'config/constants';
-import View from 'components/pages/user';
+import Show from 'components/pages/user';
+import Submissions from 'components/pages/submissions';
 import { findUserByUsername, findItemById } from 'services/hacker-news';
+import { validPreview } from 'services/validators';
 import Paginator from 'services/paginator';
 import render from 'services/render';
 import { navigate } from 'aviator';
@@ -18,7 +20,7 @@ const Users = {
     const { username } = namedParams;
 
     findUserByUsername(username).then(user => {
-      render(View, { user: user });
+      render(Show, { user: user });
     }).catch(error => {
       console.log(`Unable to find user by username: ${username}`);
       console.log(error);
@@ -30,21 +32,17 @@ const Users = {
    */
   submissions({ namedParams, queryParams }) {
     const { username } = namedParams;
-    let { page } = queryParams;
-
-    if ((typeof page !== 'number') || (page < 1)) {
-      page = 1;
-    }
 
     findUserByUsername(username).then(user => {
-      const paginator =
-        new Paginator(ITEMS_PER_PAGE,
-          map(user.submitted, itemId => () => findItemById(itemId)));
+      const submissions = user.submitted || [];
+      const promises = submissions.map(id => () => findItemById(id));
+      const pages = new Paginator(ITEMS_PER_PAGE, promises);
 
-      return paginator.getPage(page);
-    }).then(submissions => {
-      console.log(`Found submissions by user ${username} on page ${page}`);
-      console.log(submissions);
+      render(Submissions, {
+        username: username,
+        getItemsByPage: page => pages.getPage(page).filter(validPreview),
+        lastPage: pages.pageCount()
+      });
     }).catch(error => {
       console.log(`Could not find submissions by user ${username}`);
       console.log(error);
