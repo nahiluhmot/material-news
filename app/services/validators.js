@@ -5,6 +5,33 @@ import { contains } from 'underscore';
  */
 export default {
   /**
+   * Test that the given object is a valid comment.
+   */
+  validComment(comment) {
+    console.log(comment);
+    return (typeof comment === 'object') &&
+      !comment.deleted &&
+
+      (typeof comment.by === 'string') &&
+      (comment.by !== '') &&
+
+      (typeof comment.id === 'number') &&
+      (comment.id >= 1) &&
+      ((comment.id % 1) === 0) &&
+
+      (typeof comment.parent === 'number') &&
+
+      (typeof comment.text === 'string') &&
+      (comment.text !== '') &&
+
+      (typeof comment.time === 'number') &&
+      (comment.time >= 0) &&
+      ((comment.time % 1) === 0) &&
+
+      (comment.type === 'comment');
+  },
+
+  /**
    * Test that the given object is a valid story.
    */
   validStory(story) {
