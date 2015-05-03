@@ -5,9 +5,9 @@ import { contains } from 'underscore';
  */
 export default {
   /**
-   * Test that the given object is a valid story preview.
+   * Test that the given object is a valid story.
    */
-  validPreview(story) {
+  validStory(story) {
     console.log(story);
     return (typeof story === 'object') &&
       !story.deleted &&

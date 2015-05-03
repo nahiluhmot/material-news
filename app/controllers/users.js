@@ -2,7 +2,7 @@ import { ITEMS_PER_PAGE } from 'config/constants';
 import Show from 'components/pages/user';
 import Submissions from 'components/pages/submissions';
 import { findUserByUsername, findItemById } from 'services/hacker-news';
-import { validPreview } from 'services/validators';
+import { validStory } from 'services/validators';
 import Paginator from 'services/paginator';
 import render from 'services/render';
 import { navigate } from 'aviator';
@@ -40,7 +40,7 @@ const Users = {
 
       render(Submissions, {
         username: username,
-        getItemsByPage: page => pages.getPage(page).filter(validPreview),
+        getItemsByPage: page => pages.getPage(page).filter(validStory),
         lastPage: pages.pageCount()
       });
     }).catch(error => {
