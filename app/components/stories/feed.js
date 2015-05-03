@@ -40,20 +40,20 @@ class Feed extends Component {
           this.state.items.map((item, index) =>
             div({ key: item.id, className: 'feed-item' },
               create(Preview, { item: item, index: index + 1 })))),
-        div({ className: 'feed-footer' },
-          (error ?
-            div({ className: 'feed-error' }, error) :
-            (loading ?
-              div({ className: 'feed-progress' },
-                div({ className: 'feed-loading' })) :
-              button({
-                className: 'feed-load-button',
-                disabled: loading || (currentPage === lastPage),
-                onClick: event => {
-                  event.preventDefault();
-                  this.loadNextPage();
-                }
-              }, 'Load More')))));
+              div({ className: 'feed-footer' },
+                (error ?
+                  div({ className: 'feed-error' }, error) :
+                  (loading ?
+                    div({ className: 'feed-progress' },
+                      div({ className: 'feed-loading' })) :
+                        button({
+                        className: 'feed-load-button',
+                        disabled: loading || (currentPage === lastPage),
+                        onClick: event => {
+                          event.preventDefault();
+                          this.loadNextPage();
+                        }
+                      }, 'Load More')))));
 
     return tree;
   }
