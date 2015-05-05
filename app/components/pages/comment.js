@@ -3,7 +3,7 @@ import { extend } from 'underscore';
 
 import Root from 'components/pages/root';
 import Single from 'components/items/comment';
-import Feed from 'components/items/comment-feed';
+import Feed from 'components/items/comments/feed';
 
 const { div } = DOM;
 

@@ -1,5 +1,5 @@
 import { Component, createElement as create, DOM, PropTypes } from 'react';
-import CommentTree from 'components/items/comment-tree';
+import CommentTree from 'components/items/comments/tree';
 
 const { button, div, span } = DOM;
 
