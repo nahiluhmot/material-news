@@ -28,7 +28,7 @@ class Root extends Component {
         div({ className: 'navbar-fixed' },
           nav({},
             div({ className: 'nav-wrapper container' },
-              a({ className: 'navigate brand-logo', href: '/' },
+              a({ className: 'navigate brand-logo', href: '/stories/top/' },
                 'Hacker News'),
               a({
                 href: '#',
