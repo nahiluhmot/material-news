@@ -1,5 +1,21 @@
+import Comment from 'components/pages/comment';
+
+import { COMMENT_DEPTH, ITEMS_PER_PAGE } from 'config/constants';
+
 import { findItemById, maxItemId } from 'services/hacker-news';
+import loadComments from 'services/load-comments';
+import Paginator from 'services/paginator';
+import render from 'services/render';
+import { validComment } from 'services/validators';
+
 import { navigate } from 'aviator';
+import { map } from 'bluebird';
+import { filter } from 'underscore';
+
+const paginate = ids => new Paginator(
+  ITEMS_PER_PAGE,
+  ids.map(id => () => loadComments(id, COMMENT_DEPTH))
+);
 
 /**
  * This object contains the routing logic dealing with items.
@@ -15,6 +31,21 @@ const Items = {
 
     findItemById(id).then(item => {
       console.log(item);
+      if (typeof item !== 'object') {
+        throw new Error(`Expected an Object, got a ${typeof item}: ${item}`);
+      } else if (item.type === 'story') {
+        // this._showStory(item)
+      } else if (item.type === 'comment') {
+        this._showComment(item);
+      } else if (item.type === 'job') {
+        // this._showJob(item);
+      } else if (item.type === 'poll') {
+        // this._showPoll(item);
+      } else if (item.type === 'pollopt') {
+        // this._showPollOpt(item);
+      } else {
+        throw new Error(`Unknown item type: ${item.type}`);
+      }
     }).catch(error => {
       console.log(`Could not find item with id: ${id}`);
       console.log(error);
@@ -32,6 +63,21 @@ const Items = {
       console.log(error);
     });
   },
+
+  /**
+   * Private helpers.
+   */
+
+  _showComment(comment) {
+    const pages = paginate(comment.kids || []);
+
+    render(Comment, {
+      comment: comment,
+      maxDepth: COMMENT_DEPTH,
+      getCommentsByPage: page => pages.getPage(page).filter(validComment),
+      lastPage: pages.pageCount()
+    });
+  }
 };
 
 export default Items;

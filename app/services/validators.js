@@ -8,7 +8,6 @@ export default {
    * Test that the given object is a valid comment.
    */
   validComment(comment) {
-    console.log(comment);
     return (typeof comment === 'object') &&
       !comment.deleted &&
 
@@ -35,7 +34,6 @@ export default {
    * Test that the given object is a valid story.
    */
   validStory(story) {
-    console.log(story);
     return (typeof story === 'object') &&
       !story.deleted &&
 

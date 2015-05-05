@@ -1,0 +1,10 @@
+.comment-tree-button {
+  @extend .waves-effect;
+  @extend .waves-light;
+  @extend .btn;
+  @extend .col;
+  @extend .s12;
+
+  display: block;
+  width: 100%;
+}

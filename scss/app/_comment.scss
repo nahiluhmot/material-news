@@ -1,0 +1,14 @@
+.comment {
+  @extend .card;
+}
+
+.comment-link {
+}
+
+.comment-content {
+  @extend .card-content;
+}
+
+.comment-links {
+  @extend .card-action;
+}
