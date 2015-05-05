@@ -1,10 +1,11 @@
+import { unix } from 'moment';
 import { Component, createElement as create, DOM, PropTypes } from 'react';
 import Preview from 'components/stories/preview';
 
-const { button, div, span } = DOM;
+const { a, button, div, span } = DOM;
 
 /**
- * This class displays a lazy feed of items.
+ * This class displays a story.
  */
 class Story extends Component {
   /**
@@ -15,11 +16,33 @@ class Story extends Component {
   }
 
   /**
-   * Render the feed.
+   * Render the story.
    */
   render() {
-    const { lastPage } = this.props;
-    const tree = null;
+    const { by, id, score, title, time, text, url } = this.props.story;
+
+    const tree =
+      div({ className: 'story' },
+        div({ className: 'story-content' },
+          div({ className: 'story-title' },
+            div({ className: 'story-score' }, score),
+            a({ className: 'story-link', href: url || `/items/${id}` },
+              title || url)
+          ),
+
+          div({
+            className: 'story-text',
+            dangerouslySetInnerHTML: { __html: text }
+          }),
+
+          div({ className: 'story-actions' },
+            div({ className: 'story-action' },
+              a({ className: 'navigate story-link', href: `/users/${by}/` },
+                by)),
+
+            div({ className: 'story-action' },
+              a({ className: 'navigate', href: `/items/${id}/` },
+                unix(time).fromNow())))));
     return tree;
   }
 }
@@ -45,6 +68,16 @@ Story.propTypes = {
     score: PropTypes.number.isRequired,
 
     /**
+     * Text of an Ask or Show HN, or Poll.
+     */
+    text: PropTypes.string,
+
+    /**
+     * Title of the story.
+     */
+    title: PropTypes.string.isRequired,
+
+    /**
      * UTC time at which the story was posted.
      */
     time: PropTypes.number.isRequired,
@@ -53,18 +86,7 @@ Story.propTypes = {
      * Optional link to the story.
      */
     url: PropTypes.string
-  }).isRequired,
-
-  /**
-   * Function that accepts a page number and returns a promise that retrieves
-   * all of the comments on that page.
-   */
-  getItemsByPage: PropTypes.func.isRequired,
-
-  /**
-   * Integer representing the index of the final page.
-   */
-  lastPage: PropTypes.number.isRequired
+  }).isRequired
 };
 
 export default Story;

@@ -1,4 +1,5 @@
 import Comment from 'components/pages/comment';
+import Story from 'components/pages/story';
 
 import { COMMENT_DEPTH, ITEMS_PER_PAGE } from 'config/constants';
 
@@ -34,7 +35,7 @@ const Items = {
       if (typeof item !== 'object') {
         throw new Error(`Expected an Object, got a ${typeof item}: ${item}`);
       } else if (item.type === 'story') {
-        // this._showStory(item)
+        this._showStory(item);
       } else if (item.type === 'comment') {
         this._showComment(item);
       } else if (item.type === 'job') {
@@ -73,6 +74,17 @@ const Items = {
 
     render(Comment, {
       comment: comment,
+      maxDepth: COMMENT_DEPTH,
+      getCommentsByPage: page => pages.getPage(page).filter(validComment),
+      lastPage: pages.pageCount()
+    });
+  },
+
+  _showStory(story) {
+    const pages = paginate(story.kids || []);
+
+    render(Story, {
+      story: story,
       maxDepth: COMMENT_DEPTH,
       getCommentsByPage: page => pages.getPage(page).filter(validComment),
       lastPage: pages.pageCount()

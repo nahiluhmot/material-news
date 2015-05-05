@@ -1,0 +1,46 @@
+.story {
+  @extend .card;
+}
+
+.story-content {
+  @extend .card-content;
+  padding-bottom: 0 !important;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.story-title {
+  @extend .card-title;
+  @extend .row;
+  margin-bottom: 0px;
+}
+
+.story-score {
+  @extend .col;
+  @extend .s2;
+  @extend .l1;
+  @extend .black-text;
+}
+
+.story-link {
+  @extend .col;
+  @extend .s10;
+  @extend .l11;
+}
+
+.story-text {
+  @extend .row;
+}
+
+.story-actions {
+  @extend .row;
+  margin-bottom: 0;
+}
+
+.story-action {
+  @extend .card-action;
+  @extend .col;
+  @extend .s12;
+  @extend .l6;
+  @extend .center-align;
+}
