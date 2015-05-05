@@ -60,7 +60,7 @@ var config = {
       paths: [$(build, 'compile', 'src')],
       dest: $(build, 'compile')
     },
-    min: {
+    vendored: {
       src: [
         $(bower, 'axios', 'dist', 'axios.js'),
         $(bower, 'aviator', 'aviator.js'),
@@ -70,6 +70,11 @@ var config = {
         $(bower, 'moment', 'moment.js'),
         $(bower, 'react', 'react.js'),
         $(bower, 'underscore', 'underscore.js'),
+      ],
+      dest: $(build, 'min')
+    },
+    min: {
+      src: [
         $(build, 'compile', 'app.js')
       ],
       dest: $(build, 'min')

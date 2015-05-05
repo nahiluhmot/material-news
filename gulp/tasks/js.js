@@ -26,7 +26,11 @@ gulp.task('js:min', ['js:bundle'], function() {
   return minify(config.min.src, config.min.dest);
 });
 
-gulp.task('js:concat', ['js:min'], function() {
+gulp.task('js:vendored', function() {
+  return minify(config.vendored.src, config.vendored.dest);
+});
+
+gulp.task('js:concat', ['js:min', 'js:vendored'], function() {
   return gulp.src(config.concat.src)
     .pipe(concat(config.concat.name))
     .pipe(gulp.dest(config.concat.dest));
