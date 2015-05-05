@@ -18,18 +18,28 @@ class Comment extends Component {
    * Render the comment.
    */
   render() {
-    const { by, id, kids, text, time } = this.props.comment;
-    console.log(this.props.comment);
+    const { by, id, kids, parent, text, time } = this.props.comment;
 
     const tree =
       div({ className: 'comment' },
         div({ className: 'comment-content' },
-          div({},
-            a({ className: 'navigate comment-link', href: `/users/${by}/` },
-              by),
-            a({ className: 'navigate comment-link right', href: `/items/${id}/` },
-              unix(time).fromNow())),
-          div({ dangerouslySetInnerHTML: { __html: text } })));
+          div({
+            className: 'comment-text',
+            dangerouslySetInnerHTML: { __html: text }
+          }),
+
+          div({ className: 'comment-actions' },
+            div({ className: 'comment-action' },
+              a({ className: 'navigate comment-link', href: `/users/${by}/` },
+                by)),
+
+            div({ className: 'comment-action' },
+              a({ className: 'navigate', href: `/items/${parent}/` },
+                'Parent')),
+
+            div({ className: 'comment-action' },
+              a({ className: 'navigate', href: `/items/${id}/` },
+                unix(time).fromNow())))));
 
     return tree;
   }
@@ -50,6 +60,11 @@ Comment.propTypes = {
      * Unique identifier of the comment whose preview is being shown.
      */
     id: PropTypes.number.isRequired,
+
+    /**
+     * Unique identifier of the parent item.
+     */
+    parent: PropTypes.number.isRequired,
 
     /**
      * Comment body.

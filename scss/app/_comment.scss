@@ -2,13 +2,26 @@
   @extend .card;
 }
 
-.comment-link {
-}
-
 .comment-content {
   @extend .card-content;
+  padding-bottom: 0 !important;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-.comment-links {
+.comment-text {
+  @extend .row;
+}
+
+.comment-actions {
+  @extend .row;
+  margin-bottom: 0;
+}
+
+.comment-action {
   @extend .card-action;
+  @extend .col;
+  @extend .s12;
+  @extend .l4;
+  @extend .center-align;
 }

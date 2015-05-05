@@ -37,7 +37,7 @@ class CommentTree extends Component {
                 `${(kids || []).length} more comments`)))),
 
         // Render the children.
-        ((maxDepth > (currentDepth + 1)) ?
+        ((maxDepth <= (currentDepth + 1)) ?
           [] :
           (loadedChildren || []).map(child => create(CommentTree, {
             root: child,
