@@ -31,13 +31,13 @@ class CommentTree extends Component {
             create(Comment, { comment: root }),
 
             // Render the "Load more" button when there are too many.
-            (((kids || []).length === (loadedChildren || []).length) ?
+            ((maxDepth > (currentDepth + 1) || ((kids || []).length === 0)) ?
               null :
               a({ className: 'comment-tree-button', href: `/items/${id}/` },
                 `${(kids || []).length} more comments`)))),
 
         // Render the children.
-        ((maxDepth === currentDepth) ?
+        ((maxDepth > (currentDepth + 1)) ?
           [] :
           (loadedChildren || []).map(child => create(CommentTree, {
             root: child,
