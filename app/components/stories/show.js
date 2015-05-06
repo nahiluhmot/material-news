@@ -32,7 +32,7 @@ class Story extends Component {
 
           div({
             className: 'story-text',
-            dangerouslySetInnerHTML: { __html: text }
+            dangerouslySetInnerHTML: { __html: text || '' }
           }),
 
           div({ className: 'story-actions' },
