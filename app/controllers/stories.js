@@ -1,4 +1,4 @@
-import View from 'components/pages/stories/list';
+import List from 'components/pages/stories/list';
 import { ITEMS_PER_PAGE } from 'config/constants';
 import API from 'services/hacker-news';
 import render from 'services/render';
@@ -6,18 +6,21 @@ import Paginator from 'services/paginator';
 import { validStory }  from 'services/validators';
 import { navigate } from 'aviator';
 
-const loadPage = promise => {
+const loadPage = (type, promise) => {
   promise.then(ids => {
     const promises = ids.map(id => () => API.findItemById(id));
     const pages = new Paginator(ITEMS_PER_PAGE, promises);
 
-    render(View, {
+    render(List, {
       getItemsByPage: page => pages.getPage(page).filter(validStory),
       lastPage: pages.pageCount()
     });
   }).catch(error => {
-    console.log('Unable to fetch the stories');
-    console.log(error);
+    navigate('/errors/', {
+      queryParams: {
+        message: 'Unable to load ${type}'
+      }
+    });
   });
 };
 
@@ -28,27 +31,27 @@ const Stories = {
   /**
    * Get the top stories -- like hot on reddit.
    */
-  top: () => loadPage(API.topStories()),
+  top: () => loadPage('top stories', API.topStories()),
 
   /**
    * Get the newest stories.
    */
-  recent: () => loadPage(API.newStories()),
+  recent: () => loadPage('recent stories', API.newStories()),
 
   /**
    * Get the Ask HN stories.
    */
-  ask: () => loadPage(API.askStories()),
+  ask: () => loadPage('ask stories', API.askStories()),
 
   /**
    * Get the Show HN stories.
    */
-  show: () => loadPage(API.showStories()),
+  show: () => loadPage('ask stories', API.showStories()),
 
   /**
    * Get the Job stories.
    */
-  job: () => loadPage(API.jobStories()),
+  job: () => loadPage('job listings', API.jobStories()),
 };
 
 export default Stories;

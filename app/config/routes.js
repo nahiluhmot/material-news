@@ -10,7 +10,7 @@ import Users from 'controllers/users';
 export default {
   target: Root,
   '/': 'home',
-  '/error': {
+  '/errors': {
     target: Errors,
     '/': 'show'
   },

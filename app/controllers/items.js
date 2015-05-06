@@ -9,9 +9,7 @@ import Paginator from 'services/paginator';
 import render from 'services/render';
 import { validComment } from 'services/validators';
 
-import { navigate } from 'aviator';
-import { map } from 'bluebird';
-import { filter } from 'underscore';
+import { navigate, serializeQueryParams } from 'aviator';
 
 const paginate = ids => new Paginator(
   ITEMS_PER_PAGE,
@@ -47,9 +45,15 @@ const Items = {
       } else {
         throw new Error(`Unknown item type: ${item.type}`);
       }
-    }).catch(error => {
-      console.log(`Could not find item with id: ${id}`);
-      console.log(error);
+    }).catch(() => {
+      navigate('/errors/', {
+        queryParams: {
+          message: [
+            'Unable to find item',
+            (id ? ` with ID ${id}` : ', no ID given')
+          ].join('')
+        }
+      });
     });
   },
 

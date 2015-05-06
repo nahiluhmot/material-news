@@ -22,9 +22,12 @@ const Users = {
 
     findUserByUsername(username).then(user => {
       render(Show, { user: user });
-    }).catch(error => {
-      console.log(`Unable to find user by username: ${username}`);
-      console.log(error);
+    }).catch(() => {
+      navigate('/errors/', {
+        queryParams: {
+          message: `No such username: "${username}"`
+        }
+      });
     });
   },
 
@@ -46,8 +49,11 @@ const Users = {
         maxDepth: COMMENT_DEPTH
       });
     }).catch(error => {
-      console.log(`Could not find comments by user ${username}`);
-      console.log(error);
+      navigate('/errors/', {
+        queryParams: {
+          message: `No such username: "${username}"`
+        }
+      });
     });
   },
 
@@ -68,8 +74,11 @@ const Users = {
         lastPage: pages.pageCount()
       });
     }).catch(error => {
-      console.log(`Could not find submissions by user ${username}`);
-      console.log(error);
+      navigate('/errors/', {
+        queryParams: {
+          message: `No such username: "${username}"`
+        }
+      });
     });
   }
 };
