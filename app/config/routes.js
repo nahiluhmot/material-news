@@ -26,6 +26,7 @@ export default {
     target: Users,
     '/:username': {
       '/': 'show',
+      '/comments': 'comments',
       '/submissions': 'submissions'
     }
   }
