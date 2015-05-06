@@ -1,3 +1,4 @@
+import Errors from 'controllers/errors';
 import Items from 'controllers/items';
 import Root from 'controllers/root';
 import Stories from 'controllers/stories';
@@ -9,6 +10,10 @@ import Users from 'controllers/users';
 export default {
   target: Root,
   '/': 'home',
+  '/error': {
+    target: Errors,
+    '/': 'show'
+  },
   '/items': {
     target: Items,
     '/:id': 'show'
