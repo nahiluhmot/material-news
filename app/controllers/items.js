@@ -1,5 +1,5 @@
-import Comment from 'components/pages/items/comment.js';
-import Story from 'components/pages/items/story.js';
+import Comment from 'components/pages/items/comment';
+import Story from 'components/pages/items/story';
 
 import { COMMENT_DEPTH, ITEMS_PER_PAGE } from 'config/constants';
 
