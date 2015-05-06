@@ -68,7 +68,7 @@ CommentTree.propTypes = {
     /**
      * Forest of chidlren comments.
      */
-    loadedChildren: PropTypes.array.isRequired,
+    loadedChildren: PropTypes.array,
 
     /**
      * Array of IDs that link to comments.
