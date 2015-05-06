@@ -11,16 +11,15 @@ export default {
   '/': 'home',
   '/items': {
     target: Items,
-    '/latest': 'latest',
     '/:id': 'show'
   },
   '/stories': {
     target: Stories,
-    '/top': 'top',
-    '/new': 'recent',
     '/ask': 'ask',
+    '/job': 'job',
+    '/new': 'recent',
     '/show': 'show',
-    '/job': 'job'
+    '/top': 'top'
   },
   '/users': {
     target: Users,

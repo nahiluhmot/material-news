@@ -54,18 +54,6 @@ const Items = {
   },
 
   /**
-   * Render the latest item created.
-   */
-  latest({ getCurrentURI: route }) {
-    maxItemId().then(id => {
-      navigate(`/items/${id}/`);
-    }).catch(error => {
-      console.log('Could not find latest item');
-      console.log(error);
-    });
-  },
-
-  /**
    * Private helpers.
    */
 
