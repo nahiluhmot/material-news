@@ -18,7 +18,7 @@ const loadPage = (type, promise) => {
   }).catch(error => {
     navigate('/errors/', {
       queryParams: {
-        message: 'Unable to load ${type}'
+        message: `Unable to load ${type}`
       }
     });
   });
