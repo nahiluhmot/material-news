@@ -27,8 +27,8 @@ class ErrorPage extends Component {
             message)),
 
         div({ className: 'row' },
-          a({ className: 'error-last-page-button', href: lastPage },
-            'Last Page')));
+          a({ className: 'error-home-button', href: '/' },
+            'Home')));
 
     return tree;
   }
@@ -39,11 +39,6 @@ ErrorPage.propTypes = {
    * Required error message.
    */
   message: PropTypes.string.isRequired,
-
-  /**
-   * Page to navigate to when the user clicks the back button.
-   */
-  lastPage: PropTypes.string.isRequired,
 };
 
 export default ErrorPage;

@@ -12,8 +12,7 @@ const Errors = {
    */
   show({ queryParams: props }) {
     render(ErrorPage, defaults(props, {
-      message: 'Unable to render the page that you requested',
-      lastPage: '/'
+      message: 'Unable to render the page that you requested'
     }));
   },
 };
