@@ -1,6 +1,6 @@
 import { ITEMS_PER_PAGE } from 'config/constants';
-import Show from 'components/pages/user';
-import Submissions from 'components/pages/submissions';
+import Show from 'components/pages/users/show';
+import Submissions from 'components/pages/users/submissions';
 import { findUserByUsername, findItemById } from 'services/hacker-news';
 import { validStory } from 'services/validators';
 import Paginator from 'services/paginator';

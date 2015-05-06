@@ -1,4 +1,4 @@
-import View from 'components/pages/stories';
+import View from 'components/pages/stories/list';
 import { ITEMS_PER_PAGE } from 'config/constants';
 import API from 'services/hacker-news';
 import render from 'services/render';

@@ -2,15 +2,15 @@ import { Component, createElement as create, DOM } from 'react';
 import { extend } from 'underscore';
 
 import Root from 'components/pages/root';
-import Single from 'components/items/comment';
-import Feed from 'components/items/comments/feed';
+import Show from 'components/stories/show';
+import Feed from 'components/comments/feed';
 
 const { div } = DOM;
 
 /**
  * This class is used to show a single comment and its children.
  */
-class Comment extends Component {
+class Story extends Component {
   /**
    * Create a new comment page.
    */
@@ -19,11 +19,11 @@ class Comment extends Component {
   }
 
   render() {
-    const { comment, getCommentsByPage, lastPage, maxDepth } = this.props;
+    const { story, getCommentsByPage, lastPage, maxDepth } = this.props;
 
     const tree =
       create(Root, {},
-        create(Single, { comment: this.props.comment }),
+        create(Show, { story: story }),
         div({ className: 'row' },
           div({ className: 'col s11 offset-s1' },
             create(Feed, {
@@ -36,6 +36,6 @@ class Comment extends Component {
   }
 }
 
-Comment.propTypes = extend({}, Single.propTypes, Feed.propTypes);
+Story.propTypes = extend({}, Show.propTypes, Feed.propTypes);
 
-export default Comment;
+export default Story;

@@ -1,5 +1,5 @@
 import { Component, createElement as create, DOM, PropTypes } from 'react';
-import Comment from 'components/items/comment';
+import Comment from 'components/comments/show';
 
 const { a, div } = DOM;
 
