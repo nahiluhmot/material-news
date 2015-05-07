@@ -77,7 +77,14 @@ var config = {
       src: [
         $(build, 'compile', 'app.js')
       ],
+      sourceMaps: isProductionBuild ? null : '.',
       dest: $(build, 'min')
+    },
+    maps: {
+      src: [
+        $(build, 'min', '**', '*.map')
+      ],
+      dest: $(build, 'public', 'js')
     },
     concat: {
       src: [
