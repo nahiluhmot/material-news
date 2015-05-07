@@ -1,4 +1,4 @@
-import { map } from 'bluebird';
+import Promise from 'bluebird';
 import { filter, extend } from 'underscore';
 
 import { findItemById } from 'services/hacker-news';
@@ -19,4 +19,14 @@ const recur = (id, depth) =>
             extend({ loadedChildren: filter(children, validComment) },
              comment)));
 
-export default recur;
+/**
+ * Test if the argument is an integer greater than one.
+ */
+const valid = n => (typeof n === 'number') && ((n % 1) === 0) || (n >= 1);
+
+export default (id, depth) =>
+  valid(id) ?
+    (valid(depth) ?
+      recur(id, depth) :
+      new Promise((_, reject) => reject(`Invalid depth: ${depth}`))) :
+    new Promise((_, reject) => reject(`Invalid ID: ${id}`));
