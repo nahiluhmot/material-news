@@ -24,13 +24,11 @@ class Story extends Component {
     const tree =
       create(Root, {},
         create(Show, { story: story }),
-        div({ className: 'row' },
-          div({ className: 'col s11 offset-s1' },
-            create(Feed, {
-              lastPage: lastPage,
-              maxDepth: maxDepth,
-              getCommentsByPage: getCommentsByPage
-            }))));
+        create(Feed, {
+          lastPage: lastPage,
+          maxDepth: maxDepth,
+          getCommentsByPage: getCommentsByPage
+        }));
 
     return tree;
   }
