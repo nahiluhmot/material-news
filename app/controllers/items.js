@@ -29,7 +29,6 @@ const Items = {
     const { id } = namedParams;
 
     findItemById(id).then(item => {
-      console.log(item);
       if (typeof item !== 'object') {
         throw new Error(`Expected an Object, got a ${typeof item}: ${item}`);
       } else if (item.type === 'story') {

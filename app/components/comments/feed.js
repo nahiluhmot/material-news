@@ -88,9 +88,7 @@ class CommentFeed extends Component {
             error: null
           });
         }
-      }).catch(error => {
-        console.log(`Error loading page ${nextPage}`);
-        console.log(error);
+      }).catch(() => {
         this.setState({
           loading: false,
           error: `Unable to load page ${nextPage}, please try again`
